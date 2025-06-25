@@ -2,11 +2,11 @@ let myPara = document.querySelector('.quote');
 let mySpan = document.querySelector('.name');
 let speechBtn = document.querySelector('.speech');
 let copyBtn = document.querySelector('.copy');
-let tweetBtn = document.querySelector('.twitter');
+let downloadButton = document.querySelector('.download');
 let volumeUpIcon = document.querySelector('.fa-volume-up');
 let volumeDownIcon = document.querySelector('.fa-volume-off');
 let speechOffBtn = document.querySelector('.mute');
-
+let myWrapper = document.querySelector('.wrapper');
 function quoteId(){
     let num = Math.random()*10000;
     let randInt = Math.round(num%1454);
@@ -83,3 +83,12 @@ function closePopup(){
 }
 openButton.addEventListener('click',openPopup);
 closeButton.addEventListener('click',closePopup);
+
+let downloadClickPoint = document.querySelector('#download');
+async function downloadSnap(){
+    const canvas = await html2canvas(myWrapper);
+    const imageURL = canvas.toDataURL("image/png");
+    downloadClickPoint.href = imageURL;
+    downloadClickPoint.download = "image.png";
+}
+downloadButton.addEventListener("click", downloadSnap);
