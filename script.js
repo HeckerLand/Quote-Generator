@@ -6,7 +6,7 @@ let downloadButton = document.querySelector('.download');
 let volumeUpIcon = document.querySelector('.fa-volume-up');
 let volumeDownIcon = document.querySelector('.fa-volume-off');
 let speechOffBtn = document.querySelector('.mute');
-let myWrapper = document.querySelector('.wrapper');
+let myWrapper = document.querySelector('.newWrapper');
 function quoteId(){
     let num = Math.random()*10000;
     let randInt = Math.round(num%1454);
