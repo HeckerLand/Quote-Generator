@@ -33,7 +33,7 @@ async function generateRandomQuotes(){
 myButton.addEventListener('click',generateRandomQuotes);
 function speakText(){
     return new Promise((resolve, reject) => {
-        let text = `Quote of the Day, ${myPara.textContent} by ${mySpan.textContent}`;
+        let text = `${myPara.textContent} by ${mySpan.textContent}`;
         let utterance = new SpeechSynthesisUtterance(text);
         utterance.addEventListener('end', resolve);
         utterance.addEventListener('error', reject);
@@ -71,6 +71,9 @@ function updateClipboard(){
     navigator.clipboard.writeText(textToCopy);
 }
 speechBtn.addEventListener('click', startVoice);
+
+
+
 copyBtn.addEventListener('click', updateClipboard);
 let openButton = document.getElementById("openPopup");
 let closeButton = document.getElementById("closePopup");
@@ -91,4 +94,20 @@ async function downloadSnap(){
     downloadClickPoint.href = imageURL;
     downloadClickPoint.download = "image.png";
 }
-downloadButton.addEventListener("click", downloadSnap);
+//downloadClickPoint.addEventListener("click", downloadSnap);
+
+
+// to handle the download functionality popUp -> snapUp
+let openSnap = document.getElementById("openSnapUP");
+let closeSnap = document.getElementById("closeSnapUP");
+let mySnapUp = document.querySelector(".snapUP"); 
+async function openSnapUp(){
+    mySnapUp.classList.add("open-snapUP");
+    await downloadSnap();
+}
+function closeSnapUp(){
+    mySnapUp.classList.remove("open-snapUP");
+}
+openSnap.addEventListener('click',openSnapUp);
+closeSnap.addEventListener('click',closeSnapUp);
+downloadClickPoint.addEventListener('click',closeSnapUp);
